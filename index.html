@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi novia?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url(imagen\ amor.jpg); 
+            background-size: cover;
+            background-position: center;
+            font-family: 'Arial', sans-serif;
+        }
+        #container {
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #f44336;
+            margin-bottom: 1rem;
+        }
+        #buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #btnNo {
+            background-color: #f44336;
+        }
+        #btnNo:hover {
+            background-color: #d32f2f;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1><span style="background: linear-gradient(to right, #f80000, #c0006a); -webkit-background-clip: text; background-clip: text; color: transparent;">¿Quieres ser mi novia?</span></h1>
+        <div id="buttons"> 
+            <button onclick="accionParaCuandoEllaDigaQueSi()" id="btnSi">¡Sí!</button>
+            <button id="btnNo" onmouseover="mueveElBoton()">No 😔</button> 
+        </div>
+    </div>
+    <script>
+        function accionParaCuandoEllaDigaQueSi() {
+            window.location.href = "aceptacion.html";
+        }
+        let lastPosition = { x: 0, y: 0 };
+
+        function mueveElBoton() {
+            const containerWidth = 720;
+            const containerHeight = 720;
+            const minDistance = 100;
+
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+
+            const x1 = centerX - containerWidth / 2 + minDistance;
+            const y1 = centerY - containerHeight / 2 + minDistance;
+            const x2 = centerX + containerWidth / 2 - minDistance;
+            const y2 = centerY + containerHeight / 2 - minDistance;
+
+            const newWidth = x1 + Math.random() * (x2 - x1);
+            const newHeight = y1 + Math.random() * (y2 - y1);
+
+            lastPosition.x = newWidth;
+            lastPosition.y = newHeight;
+
+            const btnNo = document.getElementById("btnNo");
+            btnNo.style.position = "absolute";
+            btnNo.style.left = newWidth + "px";
+            btnNo.style.top = newHeight + "px";
+        }
+
+    </script>
+</body>
+</html>
